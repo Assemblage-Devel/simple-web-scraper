@@ -13,7 +13,7 @@ class QuoteParser:
         return f'Quote: {self.content}, by Author: {self.author}'
 
     @property
-    def contnet(self):
+    def content(self):
         locator = QuoteLocators.CONTENT
         return self.parent.select_one(locator).string
     
