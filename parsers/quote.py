@@ -9,7 +9,7 @@ class QuoteParser:
     def __init__(self, parent):
         self.parent = parent
 
-    def __repr__(self):
+    def __repr__(self): # 'represent' from course: (64)
         return f'Quote: {self.content}, by Author: {self.author}'
 
     @property
