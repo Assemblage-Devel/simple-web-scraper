@@ -2,18 +2,34 @@ import re
 from locators.book_locators import BookLocators
 
 
-domain = 'https://books.toscrape.com/'
+DOMAIN = 'https://books.toscrape.com/'
+RATINGS = {
+    'One': 1,
+    'Two': 2,
+    'Three': 3,
+    'Four': 4,
+    'Five': 5
+}
+
 
 class BookParser:
     """
     Given a quote div, find the elements (content, author, tags)
     """
+    DOMAIN = 'https://books.toscrape.com/'
+    RATINGS = {
+        'One': 1,
+        'Two': 2,
+        'Three': 3,
+        'Four': 4,
+        'Five': 5   
+    }
 
     def __init__(self, parent):
         self.parent = parent
 
     def __repr__(self): # 'represent' from course: (64)
-        return f'Book: {self.title}, link: {self.link}, rating: {self.rating} Price: {self.price}'
+        return f'Book: {self.title}, link: {self.link} ({self.rating} stars) Price: {self.price}'
 
     @property
     def title(self):
@@ -23,7 +39,7 @@ class BookParser:
     @property
     def link(self):
         locator = BookLocators.LINK
-        return f"{domain}{self.parent.select_one(locator)['href']}" # or .attrs['title']
+        return f"{BookParser.DOMAIN}{self.parent.select_one(locator).attrs['href']}" # IMPORTANT doesnt return error for none
     
     @property
     def price(self):
@@ -38,8 +54,6 @@ class BookParser:
     @property
     def rating(self):
         locator = BookLocators.RATING
-        value = self.parent.select_one(locator)['class'] # [star-rating, Three]
-        print(value)
-        # list comprehention is better
+        value = self.parent.select_one(locator).attrs['class'] # [star-rating, Three]
         rating = [p for p in value if p != 'star-rating']
-        return rating[0]
+        return BookParser.RATINGS.get(rating[0], '-') # IMPORTANT doesnt return error for none
