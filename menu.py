@@ -5,6 +5,7 @@ USER_CHOICE = """
 - 'b' to look at 5-star books
 - 'c' to look at cheapest books
 - 'n' next available book on the page
+- 'v' view inspirational quotes
 - 'q' quit
 
 Enter your choice: """
@@ -27,6 +28,12 @@ def get_next_book():
     print(next(books_generator))
 
 
+def view_quotes():
+    for quote in quotes:
+        print(quote)
+
+
+
 def menu():
     choice = input(USER_CHOICE)
 
@@ -37,6 +44,8 @@ def menu():
             print_cheapest_books()
         elif choice == 'n':
             print(get_next_book())
+        elif choice == 'v':
+            view_quotes()
         else:
             print('That is not a valid selection, try again.')
         choice = input(USER_CHOICE)
