@@ -1,2 +1,2 @@
-# Quote-Scraper
-Quote scraping tool with BeautifulSoup
+# Book-Scraper
+Book scraping tool with BeautifulSoup
