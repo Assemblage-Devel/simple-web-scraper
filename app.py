@@ -1,26 +1,18 @@
 import requests
 
 from pages.books_page import BooksPage
+from pages.quotes_page import QuotesPage
 
 
-def quotes_website():
-    page_content = requests.get('https://quotes.toscrape.com').content
-    page = BooksPage(page_content)
-
-    for quote in page.quotes:
-        print(quote) # __repr__ replies
+quote_page_content = requests.get('https://quotes.toscrape.com').content
+quote_page = QuotesPage(quote_page_content)
+quotes = quote_page.quotes
 
 
-def books_website():
-    page_content = requests.get('https://books.toscrape.com/').content
-    # print(page_content)
-    page = BooksPage(page_content)
-
-    for book in page.books:
-        print(book) # __repr__ replies
+book_page_content = requests.get('https://books.toscrape.com/').content
+book_page = BooksPage(book_page_content)
+books = book_page.books
 
 
 
 
-# quotes_website()
-books_website()
