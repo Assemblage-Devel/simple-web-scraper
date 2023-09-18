@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from locators.book_page_locators import BookPageLocators
 from parsers.book import BookParser
 
+# Takes in entire page content and parses with BeautifulSoup
 
 class BooksPage:
     def __init__(self, page):
@@ -10,6 +11,6 @@ class BooksPage:
         
     @property
     def books(self):
-        locator = BookPageLocators.BOOK
+        locator = BookPageLocators.BOOKS
         book_tags = self.soup.select(locator)
         return [BookParser(e) for e in book_tags]
