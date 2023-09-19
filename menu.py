@@ -33,19 +33,18 @@ def view_quotes():
         print(quote)
 
 
+user_choices = {
+    'b': print_best_books,
+    'c': print_cheapest_books,
+    'n': get_next_book,
+    'v': view_quotes
+}
 
 def menu():
     choice = input(USER_CHOICE)
-
     while choice != 'q':
-        if choice == 'b':
-            print_best_books()
-        elif choice == 'c':
-            print_cheapest_books()
-        elif choice == 'n':
-            print(get_next_book())
-        elif choice == 'v':
-            view_quotes()
+        if choice in ('b','c','n','v'):
+            user_choices[choice]()
         else:
             print('That is not a valid selection, try again.')
         choice = input(USER_CHOICE)
