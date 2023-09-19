@@ -1,17 +1,6 @@
 import re
 from locators.book_locators import BookLocators
 
-
-DOMAIN = 'https://books.toscrape.com/'
-RATINGS = {
-    'One': 1,
-    'Two': 2,
-    'Three': 3,
-    'Four': 4,
-    'Five': 5
-}
-
-
 class BookParser:
     """
     Given a quote div, find the elements (content, author, tags)
@@ -34,7 +23,7 @@ class BookParser:
     @property
     def title(self):
         locator = BookLocators.TITLE
-        return self.parent.select_one(locator)['title'] # or .attrs['title']
+        return self.parent.select_one(locator).attrs['title']
      
     @property
     def link(self):
