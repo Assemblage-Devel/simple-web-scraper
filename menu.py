@@ -1,4 +1,4 @@
-from app import books, quotes
+from app import books, quotes, quotesc
 
 
 USER_CHOICE = """
@@ -7,7 +7,8 @@ USER_CHOICE = """
 - 'c' to look at cheapest books
 - 'n' next available book on the page
 - 't' total books
-- 'v' view inspirational quotes
+- 'v' view request inspirational quotes
+- 'w' view web inspirational  quotes
 - 'q' quit
 
 Enter your choice: """
@@ -45,24 +46,34 @@ def view_quotes():
     for quote in quotes:
         print(quote)
 
+def chrome_quotes():
+    for quote in quotesc:
+        print(quote)
 
+
+
+# NEW menu construct method by passing the menu object
+#--------------------------------------------------------------
 user_choices = {
     'a': print_all_books,
     'b': print_best_books,
     'c': print_cheapest_books,
     'n': get_next_book,
     't': total_books,
-    'v': view_quotes
+    'v': view_quotes,
+    'w': chrome_quotes
 }
 
 def menu():
     choice = input(USER_CHOICE)
     while choice != 'q':
-        if choice in ('a','b','c','n','t','v'):
+        if choice in ('a','b','c','n','t','v','w'):
             user_choices[choice]()
         else:
             print('That is not a valid selection, try again.')
         choice = input(USER_CHOICE)
+#--------------------------------------------------------------
+# NEW menu items and selection mothod
 
 
 menu()

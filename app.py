@@ -1,9 +1,11 @@
 import requests
 import logging
 import os
+from selenium import webdriver
 
 from pages.books_page import BooksPage
 from pages.quotes_page import QuotesPage
+from pages.quotes_page_chrome import QuotesPageChrome
 
 
 logging.basicConfig(level=logging.INFO,
@@ -13,10 +15,28 @@ logging.basicConfig(level=logging.INFO,
 logger = logging.getLogger("scraping")
 logger.info('Loading content ...')
 
+
+chrome = webdriver.Chrome()
+
+
+# Quotes via Chrome
+#----------------------------------------------------------------------
+chrome.get('https://quotes.toscrape.com')
+chrome_page = QuotesPageChrome(chrome)
+quotesc = chrome_page.quotes
+
+
+# Quotes via requests
+#-----------------------------------------------------------------------
 quote_page_content = requests.get('https://quotes.toscrape.com').content
 quote_page = QuotesPage(quote_page_content)
 quotes = quote_page.quotes
 
+
+
+
+# Books via requests
+#------------------------------------------------------------------------------------------
 book_page_content = requests.get('https://books.toscrape.com/catalogue/page-1.html').content
 book_page = BooksPage(book_page_content)
 
@@ -27,6 +47,6 @@ for page in range(1, book_page.page_count):
     book_page_content = requests.get(url).content
     book_page = BooksPage(book_page_content)
     books.extend(book_page.books)
-
+#------------------------------------------------------------------------------------------
 
 
