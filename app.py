@@ -1,8 +1,17 @@
 import requests
+import logging
+import os
 
 from pages.books_page import BooksPage
 from pages.quotes_page import QuotesPage
 
+
+logging.basicConfig(level=logging.INFO,
+                    filename=os.path.basename(__file__) + '.log',
+                    format="{asctime} [{levelname:8}] {process} {thread} {module}: {message}",
+                    style="{")
+logger = logging.getLogger("scraping")
+logger.info('Loading content ...')
 
 quote_page_content = requests.get('https://quotes.toscrape.com').content
 quote_page = QuotesPage(quote_page_content)
