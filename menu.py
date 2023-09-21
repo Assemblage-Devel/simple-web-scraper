@@ -52,10 +52,11 @@ def web_quotes():
         print(quote)
 
 def js_quotes():
-    for quote in quotesw:
-        print(quote)
-
-
+    author = input('Enter the author you`d like quotes from (q to quit): ')
+    while author != 'q':
+        # for quote in quotesjs(author):
+        #     print(quote)
+        author = input('Enter the author you`d like quotes from (q to quit): ')
 
 
 # NEW menu construct method by passing the menu object

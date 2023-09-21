@@ -22,15 +22,15 @@ chromejs = webdriver.Chrome()
 # Quotes via Chrome
 #----------------------------------------------------------------------
 chrome.get('https://quotes.toscrape.com')
-chrome_page = QuotesPageChrome(chrome)
-quotesw = chrome_page.quotes
+web_page = QuotesPageChrome(chrome)
+quotesw = web_page.quotes
 
 
 # JAVASCRIPT Quotes via Chrome
 #----------------------------------------------------------------------
 chromejs.get('https://quotes.toscrape.com/search.aspx')
-chrome_java_page = QuotesPageChrome(chromejs)
-quotesjs = chrome_java_page.quotes
+js_page = QuotesPageChrome(chromejs)
+quotesjs = js_page.quotes
 
 
 # Quotes via requests
