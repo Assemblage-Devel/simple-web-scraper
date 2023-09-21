@@ -3,4 +3,4 @@ Menu that provides:
 Quote scraping
 Book scraping 
 
-Scraper used: BeautifulSoup
+Scraper used: BeautifulSoup | Selenium
