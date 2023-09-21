@@ -30,7 +30,7 @@ quotesw = web_page.quotes
 #----------------------------------------------------------------------
 chromejs.get('https://quotes.toscrape.com/search.aspx')
 js_page = QuotesPageChrome(chromejs)
-quotesjs = js_page.quotes
+# quotesjs = js_page.quotes
 
 
 # Quotes via requests

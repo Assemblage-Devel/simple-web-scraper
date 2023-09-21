@@ -1,4 +1,4 @@
-from app import books, quotes, quotesw, quotesjs
+from app import books, quotes, quotesw, js_page
 
 
 USER_CHOICE = """
@@ -54,8 +54,12 @@ def web_quotes():
 def js_quotes():
     author = input('Enter the author you`d like quotes from (q to quit): ')
     while author != 'q':
-        # for quote in quotesjs(author):
-        #     print(quote)
+        js_page.select_author(author)
+        tags = js_page.get_available_tags()
+        print('Select one of these tags: [{}]'.format(" | ".join(tags)))
+        tag = input('Enter your tag: ')
+        js_page.select_tag(tag)
+        
         author = input('Enter the author you`d like quotes from (q to quit): ')
 
 

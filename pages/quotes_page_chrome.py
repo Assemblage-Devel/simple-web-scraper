@@ -14,3 +14,24 @@ class QuotesPageChrome:
         locator = QuotesPageLocators.QUOTE
         quote_tags = self.browser.find_elements(By.CSS_SELECTOR, locator)
         return [QuoteParserChrome(e) for e in quote_tags]
+    
+    @property
+    def author_dropdown(self) -> Select:
+        locator = QuotesPageLocators.AUTHOR_DROPDOWN
+        element = self.browser.find_element(By.CSS_SELECTOR, locator)
+        return Select(element)
+
+    @property
+    def tags_dropdown(self) -> Select:
+        locator = QuotesPageLocators.TAG_DROPDOWN
+        element = self.browser.find_element(By.CSS_SELECTOR, locator)
+        return Select(element)
+
+    def select_author(self, author_name: str):
+        self.author_dropdown.select_by_visible_text(author_name)
+
+    def get_available_tags(self):
+        return [tag.text.strip() for tag in self.tags_dropdown.options]
+
+    def select_tag(self, tag: str):
+        self.tags_dropdown.select_by_visible_text(tag)
