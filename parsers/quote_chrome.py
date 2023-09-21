@@ -17,6 +17,7 @@ class QuoteParserChrome:
         locator = QuoteLocators.CONTENT
         return self.parent.find_element(By.CSS_SELECTOR, locator).text
     
+    
     @property
     def author(self):
         locator = QuoteLocators.AUTHOR
@@ -28,3 +29,29 @@ class QuoteParserChrome:
         return [t.string for t in self.parent.find_elements(By.CSS_SELECTOR, locator)]
 
 
+class QuoteParserJS:
+    """
+    Given a quote div, find the elements (content, author, tags)
+    """
+
+    def __init__(self, parent):
+        self.parent = parent
+
+    def __repr__(self): # 'represent' from course: (64)
+        return f'Quote: {self.content}, by Author: {self.author}'
+
+    @property
+    def content(self):
+        locator = QuoteLocators.JS_CONTENT
+        return self.parent.find_element(By.CSS_SELECTOR, locator).text
+    
+    
+    @property
+    def author(self):
+        locator = QuoteLocators.JS_AUTHOR
+        return self.parent.find_element(By.CSS_SELECTOR, locator).text
+    
+    @property
+    def tags(self):
+        locator = QuoteLocators.JS_TAGS
+        return [t.string for t in self.parent.find_elements(By.CSS_SELECTOR, locator)]

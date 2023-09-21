@@ -3,6 +3,6 @@ class QuoteLocators:
     AUTHOR = 'small.author'
     TAGS = 'div.tags a.tag'
 
-    CHROME_CONTENT = 'span.contnet'
-    CHROME_AUTHOR = 'span.author'
-    CHROME_TAGS ='span.tag'
+    JS_CONTENT = 'span.content'
+    JS_AUTHOR = 'span.author'
+    JS_TAGS ='span.tag'

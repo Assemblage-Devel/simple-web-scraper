@@ -39,7 +39,11 @@ def quotes_js():
         print('Select one of these tags: [{}]'.format(" | ".join(tags)))
         tag = input('Enter your tag: ')
         js_page.select_tag(tag)
-        
+        js_page.search_button.click()
+        quote_js = js_page.quotes_js
+        print(quote_js)
+        print('------------------------------------------------------------')
+
         author = input('Enter the author you`d like quotes from (q to quit): ')
 
 
