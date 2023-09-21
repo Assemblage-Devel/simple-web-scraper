@@ -1,4 +1,4 @@
-from app import books, quotes, quotesc
+from app import books, quotes, quotesw, quotesjs
 
 
 USER_CHOICE = """
@@ -9,6 +9,7 @@ USER_CHOICE = """
 - 't' total books
 - 'v' view request inspirational quotes
 - 'w' view web inspirational  quotes
+- 'j' view js inspirational quotes
 - 'q' quit
 
 Enter your choice: """
@@ -46,9 +47,14 @@ def view_quotes():
     for quote in quotes:
         print(quote)
 
-def chrome_quotes():
-    for quote in quotesc:
+def web_quotes():
+    for quote in quotesw:
         print(quote)
+
+def js_quotes():
+    for quote in quotesw:
+        print(quote)
+
 
 
 
@@ -61,13 +67,14 @@ user_choices = {
     'n': get_next_book,
     't': total_books,
     'v': view_quotes,
-    'w': chrome_quotes
+    'w': web_quotes,
+    'j': js_quotes
 }
 
 def menu():
     choice = input(USER_CHOICE)
     while choice != 'q':
-        if choice in ('a','b','c','n','t','v','w'):
+        if choice in ('a','b','c','n','t','v','w','j'):
             user_choices[choice]()
         else:
             print('That is not a valid selection, try again.')

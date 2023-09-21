@@ -17,13 +17,20 @@ logger.info('Loading content ...')
 
 
 chrome = webdriver.Chrome()
-
+chromejs = webdriver.Chrome()
 
 # Quotes via Chrome
 #----------------------------------------------------------------------
 chrome.get('https://quotes.toscrape.com')
 chrome_page = QuotesPageChrome(chrome)
-quotesc = chrome_page.quotes
+quotesw = chrome_page.quotes
+
+
+# JAVASCRIPT Quotes via Chrome
+#----------------------------------------------------------------------
+chromejs.get('https://quotes.toscrape.com/search.aspx')
+chrome_java_page = QuotesPageChrome(chromejs)
+quotesjs = chrome_java_page.quotes
 
 
 # Quotes via requests
@@ -31,8 +38,6 @@ quotesc = chrome_page.quotes
 quote_page_content = requests.get('https://quotes.toscrape.com').content
 quote_page = QuotesPage(quote_page_content)
 quotes = quote_page.quotes
-
-
 
 
 # Books via requests
