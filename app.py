@@ -23,14 +23,24 @@ chromejs = webdriver.Chrome()
 #----------------------------------------------------------------------
 chrome.get('https://quotes.toscrape.com')
 web_page = QuotesPageChrome(chrome)
-quotesw = web_page.quotes
+quotes_web = web_page.quotes
 
 
 # JAVASCRIPT Quotes via Chrome
 #----------------------------------------------------------------------
 chromejs.get('https://quotes.toscrape.com/search.aspx')
 js_page = QuotesPageChrome(chromejs)
-# quotesjs = js_page.quotes
+
+def quotes_js():
+    author = input('Enter the author you`d like quotes from (q to quit): ')
+    while author != 'q':
+        js_page.select_author(author)
+        tags = js_page.get_available_tags()
+        print('Select one of these tags: [{}]'.format(" | ".join(tags)))
+        tag = input('Enter your tag: ')
+        js_page.select_tag(tag)
+        
+        author = input('Enter the author you`d like quotes from (q to quit): ')
 
 
 # Quotes via requests

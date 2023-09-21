@@ -1,4 +1,4 @@
-from app import books, quotes, quotesw, js_page
+from app import books, quotes, quotes_web, quotes_js
 
 
 USER_CHOICE = """
@@ -48,19 +48,8 @@ def view_quotes():
         print(quote)
 
 def web_quotes():
-    for quote in quotesw:
+    for quote in quotes_web:
         print(quote)
-
-def js_quotes():
-    author = input('Enter the author you`d like quotes from (q to quit): ')
-    while author != 'q':
-        js_page.select_author(author)
-        tags = js_page.get_available_tags()
-        print('Select one of these tags: [{}]'.format(" | ".join(tags)))
-        tag = input('Enter your tag: ')
-        js_page.select_tag(tag)
-        
-        author = input('Enter the author you`d like quotes from (q to quit): ')
 
 
 # NEW menu construct method by passing the menu object
@@ -73,7 +62,7 @@ user_choices = {
     't': total_books,
     'v': view_quotes,
     'w': web_quotes,
-    'j': js_quotes
+    'j': quotes_js
 }
 
 def menu():
