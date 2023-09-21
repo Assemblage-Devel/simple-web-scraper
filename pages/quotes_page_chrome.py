@@ -1,6 +1,8 @@
 from typing import List
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+
 
 from locators.quotes_page_locators import QuotesPageLocators
 from parsers.quote_chrome import QuoteParserChrome, QuoteParserJS
@@ -48,3 +50,29 @@ class QuotesPageChrome:
 
     def select_tag(self, tag: str):
         self.tags_dropdown.select_by_visible_text(tag)
+
+    def search_for_quotes(self):
+        author = input('Enter the author you`d like quotes from (q to quit): ')
+        while author != 'q':
+            try:
+                self.select_author(author)
+                tags = self.get_available_tags()
+                print('Select one of these tags: [{}]'.format(" | ".join(tags)))
+                tag = input('Enter your tag: ')
+                self.select_tag(tag)
+                self.search_button.click()
+                quote_js = self.quotes_js
+                print(quote_js)
+                print('------------------------------------------------------------')
+            except NoSuchElementException:
+                raise InvalidTagForAuthorError(
+                    f'Author `{author}` does not have any tag such as <{tag}>'
+                )
+            except Exception as e:
+                print(e)
+                print('An unknown error occurred. Please try again')
+
+            author = input('Enter the author you`d like quotes from (q to quit): ')
+
+class InvalidTagForAuthorError(ValueError):
+    pass

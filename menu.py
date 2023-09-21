@@ -7,9 +7,9 @@ USER_CHOICE = """
 - 'c' to look at cheapest books
 - 'n' next available book on the page
 - 't' total books
-- 'v' view request inspirational quotes
-- 'w' view web inspirational  quotes
-- 'j' view js inspirational quotes
+- 'v' view <request> inspirational quotes
+- 'w' view <web> inspirational  quotes
+- 'j' view <js> inspirational quotes
 - 'q' quit
 
 Enter your choice: """

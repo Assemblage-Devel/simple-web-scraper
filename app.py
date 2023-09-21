@@ -5,7 +5,7 @@ from selenium import webdriver
 
 from pages.books_page import BooksPage
 from pages.quotes_page import QuotesPage
-from pages.quotes_page_chrome import QuotesPageChrome
+from pages.quotes_page_chrome import QuotesPageChrome, InvalidTagForAuthorError
 
 
 logging.basicConfig(level=logging.INFO,
@@ -30,21 +30,7 @@ quotes_web = web_page.quotes
 #----------------------------------------------------------------------
 chromejs.get('https://quotes.toscrape.com/search.aspx')
 js_page = QuotesPageChrome(chromejs)
-
-def quotes_js():
-    author = input('Enter the author you`d like quotes from (q to quit): ')
-    while author != 'q':
-        js_page.select_author(author)
-        tags = js_page.get_available_tags()
-        print('Select one of these tags: [{}]'.format(" | ".join(tags)))
-        tag = input('Enter your tag: ')
-        js_page.select_tag(tag)
-        js_page.search_button.click()
-        quote_js = js_page.quotes_js
-        print(quote_js)
-        print('------------------------------------------------------------')
-
-        author = input('Enter the author you`d like quotes from (q to quit): ')
+quotes_js = js_page.search_for_quotes
 
 
 # Quotes via requests
