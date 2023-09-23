@@ -56,23 +56,24 @@ class QuotesPageChrome:
         while author != 'q':
             try:
                 self.select_author(author)
-                tags = self.get_available_tags()
-                print('Select one of these tags: [{}]'.format(" | ".join(tags)))
-                tag = input('Enter your tag: ')
-                self.select_tag(tag)
-                self.search_button.click()
-                quote_js = self.quotes_js
-                print(quote_js)
-                print('------------------------------------------------------------')
+                try:
+                    tags = self.get_available_tags()
+                    print('Select one of these tags: [{}]'.format(" | ".join(tags)))
+                    tag = input('Enter your tag: ')
+                    self.select_tag(tag)
+                    self.search_button.click()
+                    quote_js = self.quotes_js
+                    print(quote_js)
+                    print('------------------------------------------------------------')
+                except NoSuchElementException:
+                    print(f'Author `{author}` does not have a tag: <{tag}>')
+                except Exception as e:
+                    print(e)
+                    print('An unknown error occurred. Please try again')
             except NoSuchElementException:
-                raise InvalidTagForAuthorError(
-                    f'Author `{author}` does not have any tag such as <{tag}>'
-                )
+                    print(f'Author `{author}` does not exist. Try again.')
             except Exception as e:
                 print(e)
                 print('An unknown error occurred. Please try again')
 
             author = input('Enter the author you`d like quotes from (q to quit): ')
-
-class InvalidTagForAuthorError(ValueError):
-    pass
